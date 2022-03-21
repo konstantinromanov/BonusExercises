@@ -14,6 +14,7 @@ void bonus_exercise_1(char c);
 void printLine(int lenght);
 void printStartOfTaskLine(int taskNumber);
 void printIntSqrCubTable(int lowerLimit, int upperLimit);
+string convertCentToFeet(string input);
 
 int main()
 {
@@ -25,6 +26,53 @@ int main()
 
 	printStartOfTaskLine(2);
 	printIntSqrCubTable(10, 25);
+
+
+	printStartOfTaskLine(1);
+
+	string inputString = "";
+
+	cout << "Please enter a height in centimeters:\n";
+
+	getline(cin, inputString);
+	
+
+	cout << convertCentToFeet(inputString) << endl;
+
+}
+
+string convertCentToFeet(string input) {
+
+	stringstream strm(input);
+	double num = 0;
+	strm >> num;
+
+	stringstream numStream;
+	numStream.setf(ios::fixed);
+	numStream.precision(1);
+	numStream << num;
+
+	string result;
+
+	double feet = num / 30.48;
+	double integer;
+
+	double fractional = modf(feet, &integer);
+	double inches = fractional * 12;
+
+	stringstream intStream;
+	intStream.setf(ios::fixed);
+	intStream.precision(0);
+	intStream << integer;
+	
+	stringstream fracStream;
+	fracStream.setf(ios::fixed);
+	fracStream.precision(1);
+	fracStream << inches;
+
+	result = numStream.str() + " cm = " + intStream.str() + " feet, " + fracStream.str() + " inches";
+
+	return result;
 }
 
 void bonus_exercise_1(char c) {

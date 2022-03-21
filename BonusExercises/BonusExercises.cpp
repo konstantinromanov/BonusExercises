@@ -2,10 +2,90 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <cctype>
+#include <string>
+#include <algorithm>
+#include <iomanip> 
+#include <sstream>
+using namespace std;
+
+void bonus_exercise_1(char c);
+void printLine(int lenght);
+void printStartOfTaskLine(int taskNumber);
+void printIntSqrCubTable(int lowerLimit, int upperLimit);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+	// ---------------------------------------------------Bonus exercise----------------------------------------------------
+
+	printStartOfTaskLine(1);
+	bonus_exercise_1('X');
+
+	printStartOfTaskLine(2);
+	printIntSqrCubTable(10, 25);
+}
+
+void bonus_exercise_1(char c) {
+
+	int counter = c - 'A';
+
+	for (size_t i = 0; i <= counter; i++)
+	{
+		for (size_t j = 0; j < counter - i; j++)
+		{
+			cout << ' ';
+		}
+
+		for (size_t j = 0; j < i; j++)
+		{
+			char curC = 'A' + j;
+			cout << curC;
+		}
+
+		char curMC = 'A' + i;
+		cout << curMC;
+
+		for (size_t j = i; j > 0; j--)
+		{
+			char curC = 'A' + j - 1;
+			cout << curC;
+		}
+
+		cout << endl;
+	}
+}
+
+void printIntSqrCubTable(int lowerLimit, int upperLimit) {
+
+	printLine(40);
+
+	cout
+		<< left << setw(10) << "Integer"
+		<< right << setw(10) << "Square"
+		<< setw(20) << "Cube" << endl;
+
+	printLine(40);
+
+	for (size_t i = lowerLimit; i <= upperLimit; i++)
+	{
+
+		cout
+			<< left << setw(10) << i
+			<< right << setw(10) << pow(i, 2)
+			<< setw(20) << pow(i, 3) << endl;
+
+		printLine(40);
+	}
+}
+
+void printLine(int lenght) {
+	cout << string(lenght, '-') << endl;
+}
+
+void printStartOfTaskLine(int taskNumber) {
+	cout << "\n-----------------------------------Start of task " << taskNumber << "----------------------------------------------\n\n\n";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
